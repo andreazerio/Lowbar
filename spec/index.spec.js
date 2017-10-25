@@ -25,7 +25,7 @@ describe('first', () => {
     it('exists', () => {
         expect(_.first).to.be.a('function');
     }),
-    it('returns the first n elements of the array', () => {
+    it('returns the first n elements of an array', () => {
         expect(_.first([1,2,3])).to.equal(1);
         expect(_.first([1,2,3],2)).to.eql([1,2]);
     });
@@ -33,9 +33,27 @@ describe('first', () => {
         expect(_.first('hello'), 1).to.eql('h');
     });
     it('returns undefined if passed the wrong arguments', () => {
-        expect(_.first()).to.eql(undefined);
-        expect(_.first(12)).to.eql(undefined);
-        expect(_.first(true)).to.eql(undefined);
-        expect(_.first([])).to.eql(undefined);
+        expect(_.first()).to.equal(undefined);
+        expect(_.first(12)).to.equal(undefined);
+        expect(_.first(true)).to.equal(undefined);
+        expect(_.first([])).to.equal(undefined);
+    });
+});
+
+describe('last', () => {
+    it('exists', () => {
+        expect(_.last).to.be.a('function');
+    });
+    it('returns the last n elements of an array', () => {
+        expect(_.last([1,2,3],2)).to.eql([2,3]);
+    });
+    it('returns the last n elements of a string', () => {
+        expect(_.last('hello', 2)).to.eql(['l', 'o']);
+    });
+    it('returns undefined if passed the wrong argument', () => {
+        expect(_.last()).to.equal(undefined);
+        expect(_.last(12)).to.equal(undefined);
+        expect(_.last(true)).to.equal(undefined);
+        expect(_.last([])).to.equal(undefined);
     });
 });
