@@ -37,4 +37,16 @@ _.indexOf = (list, val, index = 0) => {
         return -1;
     }
 };
+
+_.filter = (list,pred) => {
+    let arr = [];
+    const fn = (el, index) => {
+      if (pred(el, index)) {
+          arr.push(el);
+      }
+  };
+    _.each(list,fn);
+    return arr;
+  };
+
 module.exports = _;

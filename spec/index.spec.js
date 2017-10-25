@@ -63,7 +63,7 @@ describe('#each', () => {
     it('is a function', () => {
       expect(_.each).to.be.a('function');
     });
-    it('calls the iteratee as many times as items in the passed array', () => {
+    it('calls the iteratee as many times as the number of items in the array', () => {
         const spy = sinon.spy();
         _.each([1,2,3],spy);
       expect(spy.callCount).to.equal(3);
@@ -75,7 +75,7 @@ describe('#each', () => {
       expect(spy.secondCall.calledWithExactly(2,1,[1,2,3])).to.equal(true);
       expect(spy.thirdCall.calledWithExactly(3,2,[1,2,3])).to.equal(true);
     });
-    it('calls the iteratee as many times as items in the passed object', () => {
+    it('calls the iteratee as many times as the number of items in the object', () => {
         const spy = sinon.spy();
         _.each({a:1,b:2,c:3},spy);
       expect(spy.callCount).to.equal(3);
@@ -90,7 +90,7 @@ describe('#each', () => {
   });
 
   describe('#indexOf', () => {
-    it('is a function', () => {
+    it('exists', () => {
       expect(_.indexOf).to.be.a('function');
     });
     it('returns the index of the value requested', () => {
@@ -108,5 +108,34 @@ describe('#each', () => {
     it('returns -1 if given an empty list', () => {
       expect(_.indexOf('', 'h')).to.eql(-1);
       expect(_.indexOf([], 'h')).to.eql(-1);
+    });
+  });
+
+  describe('#filter', () => {
+    const fn = (num) => {
+        return num > 2;
+      };
+    it('exists', () => {
+      expect(_.filter).to.be.a('function');
+    });
+    it('calls the iteratee as many times as the number of items in the list', () => {
+      const spy = sinon.spy();
+      _.filter([1,2,3,4,5],spy);
+      expect(spy.callCount).to.equal(5);
+    });
+    it('only returns elements from the array that satify the predicate', () => {
+      expect(_.filter([1,2,3,4,5],fn)).to.eql([3,4,5]);
+    });
+
+    it('only returns elements from the object that satify the predicate', () => { 
+      expect(_.filter({a:1,b:2, c:3,d:4,e:5},fn)).to.eql([3,4,5]);
+    });
+    it('tests for edge cases', () => {
+      expect(_.filter(3,fn)).to.eql([]);
+      expect(_.filter(undefined,fn)).to.eql([]);
+      expect(_.filter('',fn)).to.eql([]);
+      expect(_.filter(true,fn)).to.eql([]);
+      expect(_.filter([],fn)).to.eql([]);
+      expect(_.filter({},fn)).to.eql([]);
     });
   });
