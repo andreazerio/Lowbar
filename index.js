@@ -14,4 +14,19 @@ _.last = (arr, num) => {
     return num === 1 ? arr[arr.length - 1] : arr.slice(-num);
 };
 
+_.each = (list, iteratee) => {
+    if (Array.isArray(list)) {
+        for (let i = 0; i < list.length; i++) {
+            iteratee(list[i], i, list);
+        }
+    }
+    if (typeof list === 'object' && !Array.isArray(list)) {
+        for (let key in list) {
+            iteratee(list[key], key, list);
+        }
+    }
+
+    return list;
+};
+
 module.exports = _;

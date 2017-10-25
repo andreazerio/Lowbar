@@ -1,5 +1,6 @@
 const path = require('path');
 const expect = require('chai').expect;
+const sinon = require('sinon');
 const _ = require(path.join(__dirname, '..', './index.js'));
 
 describe('_', () => {
@@ -57,3 +58,33 @@ describe('last', () => {
         expect(_.last([])).to.equal(undefined);
     });
 });
+
+describe('#each', () => {
+    it('is a function', () => {
+      expect(_.each).to.be.a('function');
+    });
+    it('calls the iteratee as many times as items in the passed array', () => {
+        const spy = sinon.spy();
+        _.each([1,2,3],spy);
+      expect(spy.callCount).to.equal(3);
+    });
+    it('calls the iteratee passing each element of the array as the right argument',() => {
+        const spy = sinon.spy();
+        _.each([1,2,3],spy);
+      expect(spy.firstCall.calledWithExactly(1,0,[1,2,3])).to.equal(true);
+      expect(spy.secondCall.calledWithExactly(2,1,[1,2,3])).to.equal(true);
+      expect(spy.thirdCall.calledWithExactly(3,2,[1,2,3])).to.equal(true);
+    });
+    it('calls the iteratee as many times as items in the passed object', () => {
+        const spy = sinon.spy();
+        _.each({a:1,b:2,c:3},spy);
+      expect(spy.callCount).to.equal(3);
+    });
+    it('calls the iteratee passing each element of the object as the right argument',() => {
+        const spy = sinon.spy();
+        _.each({a:1,b:2,c:3},spy);
+      expect(spy.firstCall.calledWithExactly(1,'a',{a:1,b:2,c:3})).to.equal(true);
+      expect(spy.secondCall.calledWithExactly(2,'b',{a:1,b:2,c:3})).to.equal(true);
+      expect(spy.thirdCall.calledWithExactly(3,'c',{a:1,b:2,c:3})).to.equal(true);
+    });
+  });
