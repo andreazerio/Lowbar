@@ -88,3 +88,25 @@ describe('#each', () => {
       expect(spy.thirdCall.calledWithExactly(3,'c',{a:1,b:2,c:3})).to.equal(true);
     });
   });
+
+  describe('#indexOf', () => {
+    it('is a function', () => {
+      expect(_.indexOf).to.be.a('function');
+    });
+    it('returns the index of the value requested', () => {
+      expect(_.indexOf(['h', 'e','l','l','o'], 'h')).to.equal(0);
+    });
+    it('returns -1 if the value is not present', () => {
+      expect(_.indexOf('hello', 't')).to.equal(-1);
+      expect(_.indexOf('hello', 'h',2)).to.equal(-1);
+    });
+    it('returns NaN if the fisrt argument is not a valid list', () => {
+      expect(_.indexOf(3, 'h')).to.eql(NaN);
+      expect(_.indexOf(true, 'h')).to.eql(NaN);
+      expect(_.indexOf({}, 'h')).to.eql(NaN);
+    });
+    it('returns -1 if given an empty list', () => {
+      expect(_.indexOf('', 'h')).to.eql(-1);
+      expect(_.indexOf([], 'h')).to.eql(-1);
+    });
+  });

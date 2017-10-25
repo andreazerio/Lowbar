@@ -29,4 +29,12 @@ _.each = (list, iteratee) => {
     return list;
 };
 
+_.indexOf = (list, val, index = 0) => {
+    if (!Array.isArray(list) && typeof list !== 'string') return NaN;
+    if (list.length === 0) return -1;
+    for (let i = index; i < list.length; i++) {
+        if (list[i] === val) return i;
+        return -1;
+    }
+};
 module.exports = _;
