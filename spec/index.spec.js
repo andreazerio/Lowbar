@@ -89,7 +89,7 @@ describe('each', () => {
     });
   });
 
-  describe('indexOf', () => {
+describe('indexOf', () => {
     it('exists', () => {
       expect(_.indexOf).to.be.a('function');
     });
@@ -111,7 +111,7 @@ describe('each', () => {
     });
   });
 
-  describe('filter', () => {
+describe('filter', () => {
     const fn = (num) => {
         return num > 2;
       };
@@ -140,7 +140,7 @@ describe('each', () => {
     });
   });
 
-  describe('reject', () => {
+describe('reject', () => {
 
     const fn = (num) => {
         return num > 2;
@@ -165,7 +165,7 @@ describe('each', () => {
     });
   });
 
-  describe('uniq', () => {
+describe('uniq', () => {
     it('exists', () => {
       expect(_.uniq).to.be.a('function');
     });
@@ -187,7 +187,7 @@ describe('each', () => {
    });
   });
 
-  describe('map', () => {
+describe('map', () => {
     const fn = (num) => num * 3;
     const fn2 = (item) => item.toUpperCase();
 
@@ -215,7 +215,7 @@ describe('each', () => {
     });
   });
   
-  describe('contains', () => {
+describe('contains', () => {
     it('exists', () => {
       expect(_.contains).to.be.a('function');
     });
@@ -236,7 +236,7 @@ describe('each', () => {
     });
   });
 
-  describe('pluck', () => {
+describe('pluck', () => {
     it('exists', () => {
     expect(_.pluck).to.be.a('function');
     });
@@ -263,6 +263,28 @@ describe('each', () => {
       expect(_.pluck({})).to.eql([]);
       expect(_.pluck('')).to.eql([]);
       expect(_.pluck(obj)).to.eql([undefined, undefined, undefined]);
+    });
+  });
+
+describe('reduce', () => {
+    it('is a function', () => {
+      expect(_.reduce).to.be.a('function');
+    });
+    it('returns the type of the memo', () => { 
+        let memo = []; 
+        const fn = (item) => {
+            if (item > 2) memo.push(item * 2);
+          };
+      let arr = [1,2,3,4,5];
+      expect(typeof _.reduce(arr,fn,memo)).to.equal(typeof memo);
+    });
+    it('boils down a list of values into a single value in the same type as the memo', () => {
+        let memo = []; 
+        const fn = (item) => {
+            if (item > 2) memo.push(item * 2);
+          };
+     let arr = [1,2,3,4,5];
+      expect(_.reduce(arr, fn, memo)).to.eql([6,8,10]); 
     });
   });
   

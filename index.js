@@ -81,4 +81,10 @@ _.filter = (list,pred) => {
     return result;
   };
 
+  _.reduce = (list, iteratee, memo) => {
+      const fn = (item) => iteratee(item);
+      _.each(list, fn);
+      return memo;
+  };
+
 module.exports = _;
