@@ -76,4 +76,6 @@ _.filter = (list,pred) => {
     return result;
   };
 
+  _.contains = (list,val,fromIndex) => _.indexOf(list,val,fromIndex) > -1;
+
 module.exports = _;

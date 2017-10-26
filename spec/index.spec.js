@@ -189,11 +189,9 @@ describe('each', () => {
 
   describe('map', () => {
     const fn = (num) => num * 3;
-      
-
     const fn2 = (item) => item.toUpperCase();
 
-    it('is a function', () => {
+    it('exists', () => {
       expect(_.map).to.be.a('function');
     });
     it('returns an array', () => {
@@ -208,12 +206,33 @@ describe('each', () => {
     it('Produces a new array of values by mapping each value in string through a transformation function (iteratee)', () => {
       expect(_.map('hello', fn2)).to.eql(['H', 'E', 'L', 'L', 'O']);
     } );
-    it('edge cases', () => {
+    it('tests for edge cases', () => {
       expect(_.map(undefined, fn)).to.eql([]);
       expect(_.map(8, fn)).to.eql([]);
       expect(_.map('', fn)).to.eql([]);
       expect(_.map([], fn)).to.eql([]);
       expect(_.map({}, fn)).to.eql([]);
+    });
+  });
+  
+  describe('contains', () => {
+    it('exists', () => {
+      expect(_.contains).to.be.a('function');
+    });
+    it('returns a boolean', () => {
+      expect(typeof _.contains('hello','h',2)).to.equal('boolean');
+    });
+    it('Returns true if the value is present in the list,use fromIndex to start your search at a given index', () => {
+      expect(_.contains('hello','h',2)).to.equal(false);
+      expect(_.contains('hello','h')).to.equal(true);
+    });
+    it('tests for edge cases', () => {
+      expect(_.contains(undefined,'h')).to.equal(false);
+      expect(_.contains([],'h')).to.equal(false);
+      expect(_.contains({},'h')).to.equal(false);
+      expect(_.contains('','h')).to.equal(false);
+      expect(_.contains(true,'h')).to.equal(false);
+      expect(_.contains(3,'h')).to.equal(false);
     });
   });
   
