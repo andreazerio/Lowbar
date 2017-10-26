@@ -87,4 +87,15 @@ _.filter = (list,pred) => {
       return memo;
   };
 
+  _.every = (list, iteratee) => {
+    if ( typeof list === 'string') list = list.split('');
+    let result = [];
+    const fn = (item) => {
+        if (iteratee(item)) result.push(true);
+    };
+    _.each(list, fn);
+
+    return result.length === list.length ? true : false;
+  };
+
 module.exports = _;

@@ -267,7 +267,7 @@ describe('pluck', () => {
   });
 
 describe('reduce', () => {
-    it('is a function', () => {
+    it('exists', () => {
       expect(_.reduce).to.be.a('function');
     });
     it('returns the type of the memo', () => { 
@@ -285,6 +285,35 @@ describe('reduce', () => {
           };
      let arr = [1,2,3,4,5];
       expect(_.reduce(arr, fn, memo)).to.eql([6,8,10]); 
+    });
+  });
+
+  describe('every', () => {
+    it('exists', () => {
+      expect(_.every).to.be.a('function');
+    });
+    it('returns a boolean', () => {
+      let list = [1,2,3,4,5];
+      let iteratee = (n) => {
+        return n > 2;
+      };
+      expect (typeof _.every(list,iteratee)).to.equal('boolean');
+    });
+    it('Returns true if all of the values in the list pass the predicate truth test', () => {
+      let list = [1,2,3,4,5];
+      let iteratee = (n) => {
+        return n > 2;
+      };
+      expect (_.every(list,iteratee)).to.equal(false);
+      expect (_.every(1,iteratee)).to.equal(false);
+      expect (_.every([],iteratee)).to.equal(true);
+    });
+    it('Returns right output when given a string as argument', () => {
+      let str = 'hhhhhhhhhhhh';
+      let iteratee = (lett) => {
+        return lett === 'h';
+      };
+      expect (_.every(str,iteratee)).to.equal(true);
     });
   });
   
