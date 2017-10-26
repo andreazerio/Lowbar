@@ -164,3 +164,25 @@ describe('#each', () => {
       expect(_.reject({},fn)).to.eql([]);
     });
   });
+
+  describe('#uniq', () => {
+    it('exists', () => {
+      expect(_.uniq).to.be.a('function');
+    });
+  it('returns an array', () => {
+    expect(Array.isArray(_.uniq([1,2,3]))).to.be.true;
+  });
+  it('returns a duplicate-free array if passed either a string or an array', () => {
+    expect(_.uniq([1,2,3,2,5,3])).to.eql([1,2,3,5]);
+    expect(_.uniq(['h','e','l','l','o',' ','w','o','r','l','d'])).to.eql(['h','e','l','o',' ','w','r','d']);
+    expect(_.uniq('hello')).to.eql(['h','e','l','o']);
+  });
+  it('tests for edge cases', () => {
+    expect(_.uniq()).to.eql([]);
+    expect(_.uniq(3)).to.eql([]);
+    expect(_.uniq(true)).to.eql([]);
+    expect(_.uniq([])).to.eql([]);
+    expect(_.uniq('')).to.eql([]);
+    expect(_.uniq({})).to.eql([]);
+   });
+  });

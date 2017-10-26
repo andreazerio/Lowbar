@@ -54,4 +54,13 @@ _.filter = (list,pred) => {
       return _.filter(list, fn);
   };
 
+  _.uniq = (arr) => {
+    if (typeof arr === 'string') arr = arr.split('');
+    if (!Array.isArray(arr)) return [];
+    return arr.reduce((acc,elem) => {
+        if (acc.indexOf(elem) === -1) acc.push(elem);
+        return acc;
+        }, []);
+  };
+
 module.exports = _;
