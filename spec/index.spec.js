@@ -59,7 +59,7 @@ describe('last', () => {
     });
 });
 
-describe('#each', () => {
+describe('each', () => {
     it('is a function', () => {
       expect(_.each).to.be.a('function');
     });
@@ -89,7 +89,7 @@ describe('#each', () => {
     });
   });
 
-  describe('#indexOf', () => {
+  describe('indexOf', () => {
     it('exists', () => {
       expect(_.indexOf).to.be.a('function');
     });
@@ -111,7 +111,7 @@ describe('#each', () => {
     });
   });
 
-  describe('#filter', () => {
+  describe('filter', () => {
     const fn = (num) => {
         return num > 2;
       };
@@ -140,7 +140,7 @@ describe('#each', () => {
     });
   });
 
-  describe('#reject', () => {
+  describe('reject', () => {
 
     const fn = (num) => {
         return num > 2;
@@ -165,7 +165,7 @@ describe('#each', () => {
     });
   });
 
-  describe('#uniq', () => {
+  describe('uniq', () => {
     it('exists', () => {
       expect(_.uniq).to.be.a('function');
     });
@@ -186,3 +186,34 @@ describe('#each', () => {
     expect(_.uniq({})).to.eql([]);
    });
   });
+
+  describe('map', () => {
+    const fn = (num) => num * 3;
+      
+
+    const fn2 = (item) => item.toUpperCase();
+
+    it('is a function', () => {
+      expect(_.map).to.be.a('function');
+    });
+    it('returns an array', () => {
+      expect(Array.isArray(_.map([1,2,3], fn))).to.be.true;
+    });
+    it('Produces a new array of values by mapping each value in list through a transformation function (iteratee)', () => {
+      let arr = [1,2,3];
+      let obj = {a:1, b:2, c:3};
+      expect(_.map(arr, fn)).to.eql([3,6,9]);
+      expect(_.map(obj, fn)).to.eql([3,6,9]);
+    });
+    it('Produces a new array of values by mapping each value in string through a transformation function (iteratee)', () => {
+      expect(_.map('hello', fn2)).to.eql(['H', 'E', 'L', 'L', 'O']);
+    } );
+    it('edge cases', () => {
+      expect(_.map(undefined, fn)).to.eql([]);
+      expect(_.map(8, fn)).to.eql([]);
+      expect(_.map('', fn)).to.eql([]);
+      expect(_.map([], fn)).to.eql([]);
+      expect(_.map({}, fn)).to.eql([]);
+    });
+  });
+  
