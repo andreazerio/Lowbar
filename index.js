@@ -49,4 +49,9 @@ _.filter = (list,pred) => {
     return arr;
   };
 
+  _.reject = (list, pred) => {
+      const fn = (item) => !pred(item);
+      return _.filter(list, fn);
+  };
+
 module.exports = _;

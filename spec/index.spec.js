@@ -139,3 +139,28 @@ describe('#each', () => {
       expect(_.filter({},fn)).to.eql([]);
     });
   });
+
+  describe('#reject', () => {
+
+    const fn = (num) => {
+        return num > 2;
+      };
+
+    it('exists', () => {
+      expect(_.reject).to.be.a('function');
+    });
+    it('only returns elements from the array that don\'t satisfy the predicate', () => {
+      expect(_.reject([1,2,3,4,5],fn)).to.eql([1,2]);
+    });
+    it('only returns elements from the object that don\'t satisfy the predicate', () => {
+      expect(_.reject({a:1,b:2, c:3,d:4,e:5},fn)).to.eql([1,2]);
+    });
+    it('tests for edge cases', () => {
+      expect(_.reject(3,fn)).to.eql([]);
+      expect(_.reject(undefined,fn)).to.eql([]);
+      expect(_.reject('',fn)).to.eql([]);
+      expect(_.reject(true,fn)).to.eql([]);
+      expect(_.reject([],fn)).to.eql([]);
+      expect(_.reject({},fn)).to.eql([]);
+    });
+  });
