@@ -235,4 +235,34 @@ describe('each', () => {
       expect(_.contains(3,'h')).to.equal(false);
     });
   });
+
+  describe('pluck', () => {
+    it('exists', () => {
+    expect(_.pluck).to.be.a('function');
+    });
+    it('should return an array', () => {
+      let arr = [
+        {a:1, b:2}, 
+        {a:3, b:4}
+      ];
+      expect(Array.isArray(_.pluck(arr, 'a'))).to.be.true;
+    });
+    it('extracts a list of property values', () => {
+      let arr = [
+        {a:1, b:2}, 
+        {a:3, b:4}
+      ];
+      expect(_.pluck(arr, 'a')).to.eql([1, 3]);
+    });
+    it('test for edge cases', () => {
+      let obj = {a:1, b:2, c:3};
+      expect(_.pluck('hi', 'a')).to.eql([undefined, undefined]);
+      expect(_.pluck('hi')).to.eql([undefined, undefined]);
+      expect(_.pluck(3)).to.eql([]);
+      expect(_.pluck([])).to.eql([]);
+      expect(_.pluck({})).to.eql([]);
+      expect(_.pluck('')).to.eql([]);
+      expect(_.pluck(obj)).to.eql([undefined, undefined, undefined]);
+    });
+  });
   

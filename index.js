@@ -66,16 +66,19 @@ _.filter = (list,pred) => {
   _.map = (list, iteratee) => {
     if (typeof list === 'string') list = list.split('');
     if (typeof list !== 'object') return [];
-
     let result = [];
-
     const fn = (item) => result.push(iteratee(item));
-
     _.each(list, fn);
-
     return result;
   };
 
   _.contains = (list,val,fromIndex) => _.indexOf(list,val,fromIndex) > -1;
+
+  _.pluck = (list, property) => {
+    let result = [];
+    const fn = (item) => result.push(item[property]);
+    _.map(list,fn);
+    return result;
+  };
 
 module.exports = _;
