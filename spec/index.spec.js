@@ -483,4 +483,8 @@ describe('reduce', () => {
       const arr = [1,2,3,4,5];
       expect(_.shuffle(arr).length).to.equal(arr.length);
     });
+    it('returns an array different from the original array', () => {
+      const arr = [1,2,3,4,5];
+      expect(_.shuffle(arr)).to.not.eql([1,2,3,4,5]);
+    });
   });
