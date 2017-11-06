@@ -234,6 +234,13 @@ describe('map', () => {
       expect(_.map([], fn)).to.eql([]);
       expect(_.map({}, fn)).to.eql([]);
     });
+    it('binds the predicate to the context if given one', () => {
+      const context = {number: 5};
+      const fn = () => {result.push(context.number);};
+      const result = [];
+      _.map([1,2,3,4], fn, context);
+      expect(result).to.eql([5,5,5,5]);
+    });
   });
   
 describe('contains', () => {

@@ -67,7 +67,8 @@ _.filter = (list,pred, context) => {
         }, []);
   };
 
-  _.map = (list, iteratee) => {
+  _.map = (list, iteratee, context) => {
+    if (context) iteratee.bind(context);
     if (typeof list === 'string') list = list.split('');
     if (typeof list !== 'object') return [];
     let result = [];
