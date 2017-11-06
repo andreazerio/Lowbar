@@ -440,4 +440,9 @@ describe('reduce', () => {
     it('is a function', () => {
       expect(_.once).to.be.a('function');
     });
+    it('only calls the function argument once', () => {
+      const spy = sinon.spy();
+      _.once(spy);
+      expect(spy.calledOnce).to.be.true;
+    });
   });
