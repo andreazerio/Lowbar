@@ -445,4 +445,11 @@ describe('reduce', () => {
       _.once(spy);
       expect(spy.calledOnce).to.be.true;
     });
+    it('tests that repeated call will not affect the argument function',  () => {
+      const spy = sinon.spy();
+      let func = _.once(spy);
+      func;
+      func; 
+      expect(spy.callCount).to.equal(1);
+    });
   });
