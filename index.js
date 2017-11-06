@@ -179,4 +179,14 @@ _.filter = (list,pred, context) => {
     }
     return list;
   };
+
+  _.invoke = function (list, methodName) {
+    
+     function fn (value) {
+       return methodName.apply(value);
+     }
+   
+     return _.map(list,fn);
+   };
+
 module.exports = _;

@@ -508,3 +508,9 @@ describe('reduce', () => {
       expect(_.shuffle('')).to.eql([]);
     });
   });
+
+  describe('invoke', () => {
+    it('exists', () => {
+      expect(_.invoke).to.be.a('function');
+    });
+  });
