@@ -491,4 +491,13 @@ describe('reduce', () => {
       const str = 'hello';
       expect(_.shuffle(str)).to.not.eql(['h','e','l','l','o']);
     });
+    it('returns a randomised array of values when passed an object', () => {
+      const obj = {
+        a: 1,
+        b: 2,
+        c: 3,
+        d :4
+      };
+      expect(_.shuffle(obj)).to.not.eql([1,2,3,4,5]);
+    });
   });
