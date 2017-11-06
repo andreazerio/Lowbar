@@ -461,3 +461,9 @@ describe('reduce', () => {
       expect(result).to.eql([1, 1, 1]);
     });
   });
+
+  describe('negate', () => {
+    it('exists', () => {
+      expect(_.negate).to.be.a('function');      
+    });
+  });

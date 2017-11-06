@@ -156,4 +156,8 @@ _.filter = (list,pred, context) => {
       return result;
     };
   };
+
+  _.negate = function (fn) {
+    return !fn();
+  };
 module.exports = _;
