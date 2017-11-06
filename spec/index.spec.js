@@ -487,4 +487,8 @@ describe('reduce', () => {
       const arr = [1,2,3,4,5];
       expect(_.shuffle(arr)).to.not.eql([1,2,3,4,5]);
     });
+    it('returns a shuffled array of letters when passed a string', () => {
+      const str = 'hello';
+      expect(_.shuffle(str)).to.not.eql(['h','e','l','l','o']);
+    });
   });
