@@ -87,6 +87,13 @@ describe('each', () => {
       expect(spy.secondCall.calledWithExactly(2,'b',{a:1,b:2,c:3})).to.equal(true);
       expect(spy.thirdCall.calledWithExactly(3,'c',{a:1,b:2,c:3})).to.equal(true);
     });
+    it('binds the iteratee to the context if given one', () => {
+      const context = {number: 5};
+      const fn = () => {result.push(context.number);};
+      const result = [];
+      _.each([1,2,3,4], fn, context);
+      expect(result).to.eql([5,5,5,5]);
+    });
   });
 
 describe('indexOf', () => {
