@@ -118,4 +118,13 @@ _.filter = (list,pred, context) => {
     return result.length >= 1 ? true : false;
   };
 
+  _.extend = function (destination) {
+      
+    if (typeof destination === 'object' && destination !== null) {
+      let sources = [].slice.call(arguments, 1);
+      return Object.assign(destination, ...sources);
+    }
+    return destination;
+  };
+
 module.exports = _;

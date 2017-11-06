@@ -387,3 +387,14 @@ describe('reduce', () => {
       expect(_.some(4,iteratee)).to.equal(false);
     });
   });
+
+  describe('extend', () => {
+    let destination = {a:1, b:2, c:3};
+    let source = {d:4, e:5};
+    it('exists', () => {
+      expect(_.extend).to.be.a('function');
+    });
+    it('returns the same type as the destination object', () => {
+      expect(typeof _.extend(destination,source)).to.equal(typeof destination);
+    });
+  });
