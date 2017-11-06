@@ -442,14 +442,22 @@ describe('reduce', () => {
     });
     it('only calls the function argument once', () => {
       const spy = sinon.spy();
-      _.once(spy);
+      _.once(spy());
       expect(spy.calledOnce).to.be.true;
     });
     it('tests that repeated call will not affect the argument function',  () => {
       const spy = sinon.spy();
       let func = _.once(spy);
-      func;
-      func; 
+      func();
+      func(); 
       expect(spy.callCount).to.equal(1);
+    });
+    it('returns the result of the first invocation', () => {
+      let fn = _.once(_.identity);
+      let result = [];
+      result.push(fn(1));
+      result.push(fn(2));
+      result.push(fn(3));
+      expect(result).to.eql([1, 1, 1]);
     });
   });

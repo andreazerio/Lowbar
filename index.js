@@ -144,11 +144,16 @@ _.filter = (list,pred, context) => {
     return object;
   };
 
-  _.once = function (fn) {
+  _.once = function (func) {
     let firstCall = true;
-    if (firstCall) {
-      firstCall = false;
-      return fn();
-         } 
-     };
+    let result;
+  
+    return function () {
+      if (firstCall) {
+        firstCall = false;
+        result = func.apply(null, arguments);
+      }
+      return result;
+    };
+  };
 module.exports = _;
