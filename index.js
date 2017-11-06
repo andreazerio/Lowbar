@@ -133,4 +133,15 @@ _.filter = (list,pred, context) => {
     return destination;
   };
 
+  _.defaults = function (object) {
+    for (let i = 1; i < arguments.length; i++) {
+      for (let key in arguments[i]) {
+        if (!object[key]) {
+          object[key] = arguments[i][key];
+        }
+      }
+    }
+    return object;
+  };
+
 module.exports = _;

@@ -413,3 +413,10 @@ describe('reduce', () => {
       expect(_.extend(true,source)).to.eql(true);
     });
   });
+
+  describe('defaults', () => {
+    it('exists', () => {
+      expect(_.defaults).to.be.a('function');
+    });
+
+  });
