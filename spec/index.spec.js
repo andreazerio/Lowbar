@@ -525,3 +525,9 @@ describe('reduce', () => {
       expect(_.invoke('hello world', 'sort')).to.eql([]);
     });
   });
+
+  describe('sortBy', () => {
+    it('exists', () => {
+      expect(_.sortBy).to.be.a('function');
+    });
+  });

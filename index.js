@@ -180,10 +180,26 @@ _.filter = (list,pred, context) => {
     return list;
   };
 
-  _.invoke = function (list, methodName, args) {
+  _.invoke = (list, methodName, args) => {
     if (typeof list !== 'object') return [];
     const func = (el) =>  (methodName instanceof Function) ? methodName.apply(el, args) : el[methodName].apply(el, args);
     return _.map(list, func);
    };
 
+   _.sortBy = (list, iteratee, context) => {
+    if (typeof list !== 'object' && typeof list !== 'string') return [];
+    if (context && typeof iteratee === 'function') iteratee = iteratee.bind(context);
+    let copy;
+    if (typeof iteratee === 'function' && typeof list === 'string') copy = list.split('');
+    if (typeof iteratee === 'function' && Array.isArray(list)) copy = list.slice();
+    if (typeof iteratee === 'string') {
+        copy = list.slice();
+        return copy.sort((a,b) => {
+            if (a[iteratee] < b[iteratee]) return -1;
+            if (a[iteratee] > b[iteratee]) return 1;
+            return 0;
+        });
+    }
+    return copy.sort((a,b) => iteratee(a) - iteratee(b));
+   };
 module.exports = _;
