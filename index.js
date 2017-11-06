@@ -14,7 +14,9 @@ _.last = (arr, num) => {
     return num === 1 ? arr[arr.length - 1] : arr.slice(-num);
 };
 
-_.each = (list, iteratee) => {
+_.each = (list, iteratee, context) => {
+    if (context) iteratee = iteratee.bind(context);
+    if (typeof list === 'string') list = list.split('');
     if (Array.isArray(list)) {
         for (let i = 0; i < list.length; i++) {
             iteratee(list[i], i, list);
@@ -38,7 +40,8 @@ _.indexOf = (list, val, index = 0) => {
     }
 };
 
-_.filter = (list,pred) => {
+_.filter = (list,pred, context) => {
+    if (context) pred.bind(context);
     let arr = [];
     const fn = (el, index) => {
       if (pred(el, index)) {
