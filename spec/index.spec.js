@@ -500,4 +500,11 @@ describe('reduce', () => {
       };
       expect(_.shuffle(obj)).to.not.eql([1,2,3,4,5]);
     });
+    it('tests for edge cases', () => {
+      expect(_.shuffle(3)).to.eql([]);
+      expect(_.shuffle(true)).to.eql([]);
+      expect(_.shuffle([])).to.eql([]);
+      expect(_.shuffle({})).to.eql([]);
+      expect(_.shuffle('')).to.eql([]);
+    });
   });
