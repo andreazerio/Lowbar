@@ -93,7 +93,8 @@ _.filter = (list,pred, context) => {
       return memo;
   };
 
-  _.every = (list, iteratee) => {
+  _.every = (list, iteratee, context) => {
+    if (context) iteratee = iteratee.bind(context);
     if ( typeof list === 'string') list = list.split('');
     let result = [];
     const fn = (item) => {

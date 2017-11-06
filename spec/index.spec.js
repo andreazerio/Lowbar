@@ -350,5 +350,12 @@ describe('reduce', () => {
       };
       expect (_.every(str,iteratee)).to.equal(true);
     });
+    it('binds the predicate to the context if given one', () => {
+      const context = {number: 5};
+      const fn = () => {result.push(context.number);};
+      const result = [];
+      _.every([1,2,3,4], fn, context);
+      expect(result).to.eql([5,5,5,5]);
+    });
   });
   
