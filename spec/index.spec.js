@@ -527,16 +527,21 @@ describe('reduce', () => {
   });
 
   describe('sortBy', () => {
+    const func = (num) => Math.abs(num); 
     it('exists', () => {
       expect(_.sortBy).to.be.a('function');
     });
     it('returns a new array sorted accord to an iteratee method', () => {
-      const func = (num) => Math.abs(num); 
       expect(_.sortBy([-9, 8, 5, -18, 68], func)).to.eql([ 5, 8, -9, -18, 68 ]);
     });
     it('returns a list of objects ordered alphabetically on one common property when iteratee is not a function', () => {
       const data = [{name: 'Andrea', age: '24'}, {name: 'Ciara', age: 22}, {name: 'Anna', age: 21}];
       expect(_.sortBy(data, 'name')).to.eql([{name: 'Andrea', age: '24'}, {name: 'Anna', age: 21}, {name: 'Ciara', age: 22}]);
       expect(_.sortBy(data, 'age')).to.eql([{name: 'Anna', age: 21},{name: 'Ciara', age: 22}, {name: 'Andrea', age: '24'}]);
+    });
+    it('tests for edge cases', () => {
+      expect(_.sortBy(9, func)).to.eql([]);
+      expect(_.sortBy(false, func)).to.eql([]);
+      expect(_.sortBy(undefined, func)).to.eql([]);
     });
   });
