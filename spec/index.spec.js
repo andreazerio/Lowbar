@@ -534,4 +534,9 @@ describe('reduce', () => {
       const func = (num) => Math.abs(num); 
       expect(_.sortBy([-9, 8, 5, -18, 68], func)).to.eql([ 5, 8, -9, -18, 68 ]);
     });
+    it('returns a list of objects ordered alphabetically on one common property when iteratee is not a function', () => {
+      const data = [{name: 'Andrea', age: '24'}, {name: 'Ciara', age: 22}, {name: 'Anna', age: 21}];
+      expect(_.sortBy(data, 'name')).to.eql([{name: 'Andrea', age: '24'}, {name: 'Anna', age: 21}, {name: 'Ciara', age: 22}]);
+      expect(_.sortBy(data, 'age')).to.eql([{name: 'Anna', age: 21},{name: 'Ciara', age: 22}, {name: 'Andrea', age: '24'}]);
+    });
   });
