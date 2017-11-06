@@ -359,3 +359,15 @@ describe('reduce', () => {
     });
   });
   
+  describe('some', () => {
+    const list = [1,2,3,4,5];
+    const iteratee = (n) => {
+      return n > 2;
+    };
+    it('is a function', () => {
+      expect(_.some).to.be.a('function');
+    });
+    it('returns a boolean', () => {
+      expect (_.some(list,iteratee)).to.be.a('boolean');
+    });
+  });

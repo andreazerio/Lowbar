@@ -105,4 +105,17 @@ _.filter = (list,pred, context) => {
     return result.length === list.length ? true : false;
   };
 
+  _.some = function (list, iteratee) {
+    if (context) iteratee = iteratee.bind(context);
+    if (typeof list === 'string') list = list.split('');
+    let result = [];
+    function fn (item) {
+      if (iteratee(item)) result.push(true);
+    }
+  
+    _.each(list,fn);
+  
+    return result.length >= 1 ? true : false;
+  };
+
 module.exports = _;
