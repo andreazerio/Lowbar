@@ -52,9 +52,10 @@ _.filter = (list,pred, context) => {
     return arr;
   };
 
-  _.reject = (list, pred) => {
-      const fn = (item) => !pred(item);
-      return _.filter(list, fn);
+  _.reject = (list, pred, context) => {
+    if (context) pred.bind(context);
+    const fn = (item) => !pred(item);
+    return _.filter(list, fn);
   };
 
   _.uniq = (arr) => {
