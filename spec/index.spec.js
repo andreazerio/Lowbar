@@ -530,4 +530,8 @@ describe('reduce', () => {
     it('exists', () => {
       expect(_.sortBy).to.be.a('function');
     });
+    it('returns a new array sorted accord to an iteratee method', () => {
+      const func = (num) => Math.abs(num); 
+      expect(_.sortBy([-9, 8, 5, -18, 68], func)).to.eql([ 5, 8, -9, -18, 68 ]);
+    });
   });
