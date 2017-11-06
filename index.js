@@ -118,11 +118,17 @@ _.filter = (list,pred, context) => {
     return result.length >= 1 ? true : false;
   };
 
-  _.extend = function (destination) {
-      
-    if (typeof destination === 'object' && destination !== null) {
-      let sources = [].slice.call(arguments, 1);
-      return Object.assign(destination, ...sources);
+  _.extend = function(destination, source) {
+    if (typeof destination === 'object' && !Array.isArray(destination)) {
+      for (let key in source) {
+        destination[key] = source[key]; 
+      }
+    }
+  
+    if (Array.isArray(destination)) {
+      for (let key in source) {
+        destination.push(source[key]);
+      }
     }
     return destination;
   };

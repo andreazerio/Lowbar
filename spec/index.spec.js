@@ -400,4 +400,8 @@ describe('reduce', () => {
     it('shallowly copies all of the properties in the source objects over to the destination object, and return the destination object', () => {
       expect(_.extend(destination,source)).to.eql({a:1, b:2, c:3, d:4, e:5});
     });
+    it('shallowly copies all of source object properties into array destination', () => {
+      let destination = [1,2,3];
+      expect(_.extend(destination, source)).to.eql([1, 2, 3, 4, 5]);
+    });
   });
