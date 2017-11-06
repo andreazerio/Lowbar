@@ -404,4 +404,12 @@ describe('reduce', () => {
       let destination = [1,2,3];
       expect(_.extend(destination, source)).to.eql([1, 2, 3, 4, 5]);
     });
+    it('tests for edge cases', () => {
+      expect(_.extend(3,source)).to.equal(3);
+      expect(_.extend('',source)).to.equal('');
+      expect(_.extend(undefined,source)).to.equal(undefined);
+      expect(_.extend([],source)).to.eql([4,5]);
+      expect(_.extend({},source)).to.eql({d:4, e:5});
+      expect(_.extend(true,source)).to.eql(true);
+    });
   });
