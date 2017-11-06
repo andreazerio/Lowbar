@@ -513,4 +513,10 @@ describe('reduce', () => {
     it('exists', () => {
       expect(_.invoke).to.be.a('function');
     });
+    it('returns a sorted list of values when passed the sort method', () => {
+      expect(_.invoke([[5, 1, 7], [3, 2, 1]], 'sort')).to.eql([[1, 5, 7], [1, 2, 3]]);
+    });
+    it('returns a collection of upper case strings when passed toUpperCase method', () => {
+      expect(_.invoke({a: 'hello',b: 'world'}, 'toUpperCase')).to.eql(['HELLO', 'WORLD']);
+    });
   });

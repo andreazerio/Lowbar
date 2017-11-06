@@ -180,13 +180,11 @@ _.filter = (list,pred, context) => {
     return list;
   };
 
-  _.invoke = function (list, methodName) {
-    
-     function fn (value) {
-       return methodName.apply(value);
-     }
-   
-     return _.map(list,fn);
+  _.invoke = function (list, methodName, args) {
+    if (typeof list !== 'object') return [];
+    const func = (el) =>  (methodName instanceof Function) ? methodName.apply(el, args) : el[methodName].apply(el, args);
+    return _.map(list, func);
+  
    };
 
 module.exports = _;
