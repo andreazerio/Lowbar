@@ -314,6 +314,13 @@ describe('reduce', () => {
      let arr = [1,2,3,4,5];
       expect(_.reduce(arr, fn, memo)).to.eql([6,8,10]); 
     });
+    it('binds the predicate to the context if given one', () => {
+      const context = {number: 5};
+      const fn = () => {result.push(context.number);};
+      const result = [];
+      _.reduce([1,2,3,4], fn, context);
+      expect(result).to.eql([5,5,5,5]);
+    });
   });
 
   describe('every', () => {

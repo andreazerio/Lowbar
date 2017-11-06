@@ -86,7 +86,8 @@ _.filter = (list,pred, context) => {
     return result;
   };
 
-  _.reduce = (list, iteratee, memo) => {
+  _.reduce = (list, iteratee, memo, context) => {
+    if (context) iteratee = iteratee.bind(context);
       const fn = (item) => iteratee(item);
       _.each(list, fn);
       return memo;
