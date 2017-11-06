@@ -370,4 +370,7 @@ describe('reduce', () => {
     it('returns a boolean', () => {
       expect (_.some(list,iteratee)).to.be.a('boolean');
     });
+    it('Returns true if any of the values in the list pass the predicate truth test', () => {
+      expect(_.some(list,iteratee)).to.equal(true);
+    });
   });
