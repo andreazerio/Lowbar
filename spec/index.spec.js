@@ -479,4 +479,8 @@ describe('reduce', () => {
     it('exists', () => {
       expect(_.shuffle).to.be.a('function');
     });
+    it('Returns an array with the same length of the orginal array', () => {
+      const arr = [1,2,3,4,5];
+      expect(_.shuffle(arr).length).to.equal(arr.length);
+    });
   });
