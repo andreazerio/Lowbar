@@ -184,7 +184,6 @@ _.filter = (list,pred, context) => {
     if (typeof list !== 'object') return [];
     const func = (el) =>  (methodName instanceof Function) ? methodName.apply(el, args) : el[methodName].apply(el, args);
     return _.map(list, func);
-  
    };
 
 module.exports = _;

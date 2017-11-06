@@ -519,4 +519,9 @@ describe('reduce', () => {
     it('returns a collection of upper case strings when passed toUpperCase method', () => {
       expect(_.invoke({a: 'hello',b: 'world'}, 'toUpperCase')).to.eql(['HELLO', 'WORLD']);
     });
+    it('tests for edge cases', () => {
+      expect(_.invoke(3, 'sort')).to.eql([]);
+      expect(_.invoke(true, 'sort')).to.eql([]);
+      expect(_.invoke('hello world', 'sort')).to.eql([]);
+    });
   });
