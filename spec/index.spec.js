@@ -418,5 +418,12 @@ describe('reduce', () => {
     it('exists', () => {
       expect(_.defaults).to.be.a('function');
     });
-
+    it('fills in undefined properties of first argument with the first value present in the next argument', () => {
+      let obj = {a:1, b:2};
+      let def = {b:3, c:4};
+      expect(_.defaults(obj,def)).to.eql({a:1, b:2, c:4});
+    });
+    it('fills in undefined properties of first argument with the first value present in the next argument if the second argument is an array', () => {
+      expect(_.defaults(['hello', 'world'], ['noPass1', 'noPass2', 'test', 'test1'])).to.eql(['hello', 'world', 'test', 'test1']);
+    });
   });
