@@ -105,20 +105,20 @@ _.filter = (list,pred, context) => {
     return result.length === list.length ? true : false;
   };
 
-  _.some = function (list, iteratee) {
+  _.some = (list, iteratee) => {
     if (context) iteratee = iteratee.bind(context);
     if (typeof list === 'string') list = list.split('');
     let result = [];
-    function fn (item) {
+    const fn = (item) => {
       if (iteratee(item)) result.push(true);
-    }
+    };
   
     _.each(list,fn);
   
     return result.length >= 1 ? true : false;
   };
 
-  _.extend = function(destination, source) {
+  _.extend = (destination, source) => {
     if (typeof destination === 'object' && !Array.isArray(destination)) {
       for (let key in source) {
         destination[key] = source[key]; 
@@ -144,4 +144,11 @@ _.filter = (list,pred, context) => {
     return object;
   };
 
+  _.once = function (fn) {
+    let firstCall = true;
+    if (firstCall) {
+      firstCall = false;
+      return fn();
+         } 
+     };
 module.exports = _;

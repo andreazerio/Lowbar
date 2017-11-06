@@ -435,3 +435,9 @@ describe('reduce', () => {
       expect(_.defaults(true, { isTrue: false })).to.equal(true);
     });
   });
+
+  describe('once', () => {
+    it('is a function', () => {
+      expect(_.once).to.be.a('function');
+    });
+  });
