@@ -397,4 +397,7 @@ describe('reduce', () => {
     it('returns the same type as the destination object', () => {
       expect(typeof _.extend(destination,source)).to.equal(typeof destination);
     });
+    it('shallowly copies all of the properties in the source objects over to the destination object, and return the destination object', () => {
+      expect(_.extend(destination,source)).to.eql({a:1, b:2, c:3, d:4, e:5});
+    });
   });
