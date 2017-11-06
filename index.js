@@ -160,4 +160,23 @@ _.filter = (list,pred, context) => {
   _.negate = function (fn) {
     return !fn();
   };
+
+  _.shuffle = function (list) {
+    if (typeof list !== 'string' && typeof list !== 'object' && !Array.isArray(list)) return [];
+    if (typeof list === 'string') list = list.split('');
+    if (!Array.isArray(list) && typeof list === 'object') list = Object.values(list);
+    let randomIndex;
+    let temporaryVal;
+    let currentIndex = list.length;
+  
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+    
+      temporaryVal = list[currentIndex];
+      list[currentIndex] = list[randomIndex];
+      list[randomIndex] = temporaryVal;
+    }
+    return list;
+  };
 module.exports = _;

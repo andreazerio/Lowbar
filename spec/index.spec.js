@@ -463,7 +463,20 @@ describe('reduce', () => {
   });
 
   describe('negate', () => {
+    const fn = (n) => {
+      return n > 1 ;
+    };
+    const func = _.negate(fn);
     it('exists', () => {
       expect(_.negate).to.be.a('function');      
+    });
+    it('returns negated version of the predicate function', () => {
+      expect(func).to.eql(true);
+    });
+  });
+
+  describe('shuffle', () => {
+    it('exists', () => {
+      expect(_.shuffle).to.be.a('function');
     });
   });
