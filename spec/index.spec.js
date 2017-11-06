@@ -545,3 +545,9 @@ describe('reduce', () => {
       expect(_.sortBy(undefined, func)).to.eql([]);
     });
   });
+
+  describe('zip', () => {
+    it('exists', () => {
+      expect(_.zip).to.be.a('function');
+    });
+  });

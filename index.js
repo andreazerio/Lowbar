@@ -202,4 +202,12 @@ _.filter = (list,pred, context) => {
     }
     return copy.sort((a,b) => iteratee(a) - iteratee(b));
    };
+
+   _.zip = () => {
+    const longest = [].sort.call(arguments,(x, y) => y.length - x.length)[0].length;
+    const zipped = [];
+    for (let i = 0; i < longest; i++)
+    zipped[i] = _.pluck(arguments, i);
+    return zipped;
+   };
 module.exports = _;
