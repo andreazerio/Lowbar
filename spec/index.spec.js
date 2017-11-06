@@ -426,4 +426,12 @@ describe('reduce', () => {
     it('fills in undefined properties of first argument with the first value present in the next argument if the second argument is an array', () => {
       expect(_.defaults(['hello', 'world'], ['noPass1', 'noPass2', 'test', 'test1'])).to.eql(['hello', 'world', 'test', 'test1']);
     });
+    it('tests for edge cases', () => {
+      expect(_.defaults(1234, 5678)).to.equal(1234);
+      expect(_.defaults(9876, { number: 5432 })).to.equal(9876);
+      expect(_.defaults('pineapple', 'coconut')).to.equal('pineapple');
+      expect(_.defaults('pineapple', { type: 'coconut' })).to.equal('pineapple');
+      expect(_.defaults(true, false)).to.equal(true);
+      expect(_.defaults(true, { isTrue: false })).to.equal(true);
+    });
   });
