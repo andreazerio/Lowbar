@@ -380,4 +380,10 @@ describe('reduce', () => {
       };
       expect (_.some(str,iteratee)).to.equal(true);
     });
+    it('returns false for edge cases', () => {
+      expect(_.some([],iteratee)).to.equal(false);
+      expect(_.some({},iteratee)).to.equal(false);
+      expect(_.some('',iteratee)).to.equal(false);
+      expect(_.some(4,iteratee)).to.equal(false);
+    });
   });
