@@ -373,4 +373,11 @@ describe('reduce', () => {
     it('Returns true if any of the values in the list pass the predicate truth test', () => {
       expect(_.some(list,iteratee)).to.equal(true);
     });
+    it('Returns right output when given a string as argument', () => {
+      let str = 'hhshhashhhfvhhhhtrh';
+      let iteratee = (lett) => {
+        return lett === 'h';
+      };
+      expect (_.some(str,iteratee)).to.equal(true);
+    });
   });
