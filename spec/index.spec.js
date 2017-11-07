@@ -590,4 +590,8 @@ describe('reduce', () => {
     it('exists', () => {
       expect(_.flatten).to.be.a('function');
     });
+    it('flattens a nested array (the nesting can be to any depth)', () => {
+      expect(_.flatten([1, [2], [3, [[4]]]])).to.eql([1, 2, 3, 4]);
+      expect(_.flatten(['flatten', [[['this',]], 'nested',], 'array'])).to.eql(['flatten', 'this', 'nested', 'array']);
+    });
   });

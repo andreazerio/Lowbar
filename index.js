@@ -250,13 +250,11 @@ _.filter = (list,pred, context) => {
 
    _.flatten = (array, shallow) => {
     if (!Array.isArray(array) && typeof array !== 'string') return [];
-    
-    const func = (acc, item) => {
-        if ((!shallow) && Array.isArray(item)) item = _.flatten(item);
-        return acc.concat(item);
-      };
-
-      return _.reduce(array, func, []);
+    _.each(array, function(el) {
+        if (Array.isArray(el) && !shallow)
+            array = _.flatten([].concat.apply([], array));
+    });
+    return array;
    };
 
 module.exports = _;
