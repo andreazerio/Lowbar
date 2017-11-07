@@ -585,3 +585,9 @@ describe('reduce', () => {
       expect(_.sortedIndex({ a: 2, b: 4, c: 6, d: 10 }, { e: 8 })).to.equal(0);
     });
   });
+
+  describe('flatten', () => {
+    it('exists', () => {
+      expect(_.flatten).to.be.a('function');
+    });
+  });
