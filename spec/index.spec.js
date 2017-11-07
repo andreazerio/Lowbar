@@ -572,4 +572,11 @@ describe('reduce', () => {
     it('returns the index at which the element has been inserted when given a passed a third element to sort the list', function () {
       expect(_.sortedIndex(['up', 'ace', 'elephant', 'ivy'], 'boxes', 'length')).to.equal(3);
     });
+    it('binds the predicate to the context if given one', () => {
+      const context = {number: 5};
+      const fn = () => {result.push(context.number);};
+      const result = [];
+      _.sortedIndex([1,4,7,12], 8, fn, context);
+      expect(result).to.eql([ 5, 5, 5, 5, 5, 5, 5, 5 ]);
+    });
   });
