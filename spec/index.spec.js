@@ -553,4 +553,7 @@ describe('reduce', () => {
     it('Merges together the values of each of the arrays with the values at the corresponding position', () => {
       expect(_.zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false])).to.eql([['moe', 30, true], ['larry', 40, false], ['curly', 50, false]]);
     });
+    it('merges together letters of strings at the same index', () => {
+      expect(_.zip('green', 'white', 'black')).to.eql([['g', 'w', 'b'], ['r', 'h', 'l'], ['e', 'i', 'a'], ['e', 't', 'c'], ['n', 'e', 'k']]);
+    });
   });
