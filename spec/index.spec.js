@@ -579,4 +579,9 @@ describe('reduce', () => {
       _.sortedIndex([1,4,7,12], 8, fn, context);
       expect(result).to.eql([ 5, 5, 5, 5, 5, 5, 5, 5 ]);
     });
+    it('tests for edge cases', () => {
+      expect(_.sortedIndex(5, 2)).to.equal(0);
+      expect(_.sortedIndex(true, false)).to.equal(0);
+      expect(_.sortedIndex({ a: 2, b: 4, c: 6, d: 10 }, { e: 8 })).to.equal(0);
+    });
   });
