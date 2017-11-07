@@ -594,4 +594,7 @@ describe('reduce', () => {
       expect(_.flatten([1, [2], [3, [[4]]]])).to.eql([1, 2, 3, 4]);
       expect(_.flatten(['flatten', [[['this',]], 'nested',], 'array'])).to.eql(['flatten', 'this', 'nested', 'array']);
     });
+    it('only flattens the array to a single level if the "shallow" argument is passed', () => {
+      expect(_.flatten([1, [2], [3, [[4]]]], true)).to.eql([1, 2, 3, [[4]]]);
+    });
   });
