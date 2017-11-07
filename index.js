@@ -203,11 +203,18 @@ _.filter = (list,pred, context) => {
     return copy.sort((a,b) => iteratee(a) - iteratee(b));
    };
 
-   _.zip = () => {
-    const longest = [].sort.call(arguments,(x, y) => y.length - x.length)[0].length;
-    const zipped = [];
-    for (let i = 0; i < longest; i++)
-    zipped[i] = _.pluck(arguments, i);
+   _.zip = function () {
+    let zipped = [];
+    let args = [].slice.apply(arguments);
+
+    const func = (arr) => {
+        _.each(arr, (elem, index) => {
+            if (zipped[index]) zipped[index].push(elem);
+            else zipped[index] = [elem];
+        });
+    };
+    _.each(args, func);
     return zipped;
    };
+
 module.exports = _;

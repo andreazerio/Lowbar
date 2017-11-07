@@ -550,4 +550,7 @@ describe('reduce', () => {
     it('exists', () => {
       expect(_.zip).to.be.a('function');
     });
+    it('Merges together the values of each of the arrays with the values at the corresponding position', () => {
+      expect(_.zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false])).to.eql([['moe', 30, true], ['larry', 40, false], ['curly', 50, false]]);
+    });
   });
