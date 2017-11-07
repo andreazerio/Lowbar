@@ -569,4 +569,7 @@ describe('reduce', () => {
     it('returns the index at which the element has been inserted', function () {
       expect(_.sortedIndex([10, 20, 30, 40, 50], 35)).to.equal(3);
     });
+    it('returns the index at which the element has been inserted when given a passed a third element to sort the list', function () {
+      expect(_.sortedIndex(['up', 'ace', 'elephant', 'ivy'], 'boxes', 'length')).to.equal(3);
+    });
   });
