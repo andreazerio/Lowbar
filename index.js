@@ -217,4 +217,35 @@ _.filter = (list,pred, context) => {
     return zipped;
    };
 
+   _.sortedIndex = (list, value, iteratee, context) => {
+    if (context && typeof iteratee === 'function') iteratee.bind(context);
+    if (!Array.isArray(list) && typeof list !== 'string') return 0;
+    
+      let newList = list.slice();
+      newList.push(value);
+    
+      if (iteratee) {
+        newList = _.sortBy(newList, iteratee);
+    
+        let firstIndex = 0;
+        let middleIndex;
+        let lastIndex = newList.length - 1;
+
+        while (lastIndex >= firstIndex) {
+          middleIndex = Math.floor((firstIndex + lastIndex) / 2);
+          if (newList[middleIndex][iteratee] === value[iteratee]) {
+            return middleIndex;
+          }
+          else if (newList[middleIndex][iteratee] < value[iteratee]) {
+            firstIndex = middleIndex + 1;
+          } else {
+            lastIndex = middleIndex - 1;
+          }
+        }
+        return -1;
+    
+      } else newList.sort();
+      return _.indexOf(newList, value, true);
+   };
+
 module.exports = _;

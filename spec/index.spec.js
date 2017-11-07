@@ -561,3 +561,9 @@ describe('reduce', () => {
       expect(_.zip(5)).to.eql([]);
     });
   });
+
+  describe('sortedIndex', () => {
+    it('should be a function', function () {
+      expect(_.sortedIndex).to.be.a('function');
+    });
+  });
