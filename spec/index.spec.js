@@ -597,4 +597,9 @@ describe('reduce', () => {
     it('only flattens the array to a single level if the "shallow" argument is passed', () => {
       expect(_.flatten([1, [2], [3, [[4]]]], true)).to.eql([1, 2, 3, [[4]]]);
     });
+    it('test for edge cases', () => {
+      expect(_.flatten(1234)).to.eql([]);
+      expect(_.flatten(false)).to.eql([]);
+      expect(_.flatten({ a: 'yes', b: 'no', c: 'maybe' })).to.eql([]);
+    });
   });
