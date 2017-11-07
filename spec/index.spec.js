@@ -556,4 +556,8 @@ describe('reduce', () => {
     it('merges together letters of strings at the same index', () => {
       expect(_.zip('green', 'white', 'black')).to.eql([['g', 'w', 'b'], ['r', 'h', 'l'], ['e', 'i', 'a'], ['e', 't', 'c'], ['n', 'e', 'k']]);
     });
+    it('tests for edge cases', () => {
+      expect(_.zip(true)).to.eql([]);
+      expect(_.zip(5)).to.eql([]);
+    });
   });
