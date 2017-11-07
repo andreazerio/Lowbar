@@ -566,4 +566,7 @@ describe('reduce', () => {
     it('should be a function', function () {
       expect(_.sortedIndex).to.be.a('function');
     });
+    it('returns the index at which the element has been inserted', function () {
+      expect(_.sortedIndex([10, 20, 30, 40, 50], 35)).to.equal(3);
+    });
   });

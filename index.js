@@ -245,7 +245,7 @@ _.filter = (list,pred, context) => {
         return -1;
     
       } else newList.sort();
-      return _.indexOf(newList, value, true);
+      return newList.indexOf(value);
    };
 
 module.exports = _;
