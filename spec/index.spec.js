@@ -637,3 +637,16 @@ describe('reduce', () => {
       expect(_.difference(true, false, false)).to.eql([]);
     });
   });
+
+  describe('memoize', () => {
+    it('exists', () => {
+      expect(_.memoize).to.be.a('function');
+    });
+    it('returns the same value as the original function', function () {
+      const double = (num) => num * 2;
+      const memoizeDouble = _.memoize(double);
+      expect(memoizeDouble(3)).to.eql(double(3));
+      expect(memoizeDouble(3)).to.eql(double(3));
+      expect(memoizeDouble(3)).to.eql(double(3));
+    });
+  });

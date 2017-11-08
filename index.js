@@ -281,4 +281,13 @@ _.filter = (list,pred, context) => {
     });
    };
 
+   _.memoize = (func) => {
+    var cache = {};
+    return function() {
+        var args = [].slice.call(arguments);
+        return cache[args] = (args in cache) ? cache[args] : func.apply(this, args);
+    };
+   
+};
+
 module.exports = _;
