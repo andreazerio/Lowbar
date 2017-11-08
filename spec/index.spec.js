@@ -632,4 +632,8 @@ describe('reduce', () => {
     it('returns a split string when passed a string as first argument', () => {
       expect(_.difference('leonardo', 'raphael', 'donatello', 'michelangelo')).to.eql(['l', 'e', 'o', 'n', 'a', 'r', 'd', 'o']);
     });
+    it('tests for edge cases', () => {
+      expect(_.difference(789, 17, 3)).to.eql([]);
+      expect(_.difference(true, false, false)).to.eql([]);
+    });
   });
