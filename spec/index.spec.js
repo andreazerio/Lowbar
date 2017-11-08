@@ -615,4 +615,9 @@ describe('reduce', () => {
     it('should return all characters common to each string given', function () {
       expect(_.intersection('triceratops', 'tyrannosaurus rex')).to.eql(['t', 'r', 'e', 'a', 'o', 's']);
     });
+    it('tests for edge cases', () => {
+      expect(_.intersection(384, 789, 18)).to.eql([]);
+      expect(_.intersection(true, true, true)).to.eql([]);
+      expect(_.intersection({ a: 785, b: 'zebra' }, { a: 23, b: 'zebra', c: 99 }, { a: false, b: 'zebra' })).to.eql([]);
+    });
   });

@@ -269,6 +269,7 @@ _.filter = (list,pred, context) => {
     const result = _.filter(array, (elem) => {
         return array.indexOf(elem) !== array.lastIndexOf(elem);
     });
+    if (!Array.isArray(args[0]) && typeof args[0] !== 'string') return [];
     return _.uniq(result);
    };
 
