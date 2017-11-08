@@ -608,4 +608,8 @@ describe('reduce', () => {
     it('exists', () => {
       expect(_.intersection).to.be.a('function');
     });
+    it('should return all items common to each array given', function () {
+      expect(_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1])).to.eql([1, 2]);
+      expect(_.intersection(['cat', 2, 3, false], [false, 2, 'cat', 10, true, 99], [2, 'cat', 'dog', false, 'mouse'])).to.eql(['cat', 2, false]);
+    });
   });
