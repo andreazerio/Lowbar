@@ -260,13 +260,16 @@ _.filter = (list,pred, context) => {
    };
 
    _.intersection = function () {
-    const args = [].slice.call(arguments);
-    const array = _.flatten(args);
+    let args = [].slice.call(arguments);
+    let newArgs = _.map(args, (arr) => {
+        if (typeof arr === 'object') return _.uniq(arr);
+        if (typeof arr === 'string') return _.uniq(arr.split(''));
+    });
+    const array = _.flatten(newArgs);
     const result = _.filter(array, (elem) => {
         return array.indexOf(elem) !== array.lastIndexOf(elem);
     });
     return _.uniq(result);
-    
    };
 
 module.exports = _;
