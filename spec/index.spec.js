@@ -668,3 +668,18 @@ describe('reduce', () => {
       expect(counter).to.equal(6);
     });
   });
+
+  describe('delay', () => {
+      it('exists', () => {      
+          expect(_.delay).to.be.a('function');
+        });
+          it('executes the function after the set delay', (done) => {
+            const spy = sinon.spy();
+            _.delay(spy, 1000);
+            expect(spy.called).to.equal(false);
+            setTimeout(() => {
+              expect(spy.called).to.equal(true);
+              done();
+            }, 1005);
+          });
+  });

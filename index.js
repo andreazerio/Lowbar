@@ -287,7 +287,13 @@ _.filter = (list,pred, context) => {
         var args = [].slice.call(arguments);
         return cache[args] = (args in cache) ? cache[args] : func.apply(this, args);
     };
-   
+};
+
+_.delay = (func, time) => {
+    const args = [].slice.call(arguments, 2);
+    setTimeout(() => {
+        func.apply(null, args);
+    }, time);
 };
 
 module.exports = _;
