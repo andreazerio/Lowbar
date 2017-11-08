@@ -649,7 +649,7 @@ describe('reduce', () => {
       expect(memoizeDouble(3)).to.eql(double(3));
       expect(memoizeDouble(3)).to.eql(double(3));
     });
-    it('calls only the function once if passed with the same argument ', () => {
+    it('calls the function only once if passed with the same argument ', () => {
       let counter = 0;
       const updateCounter = (num) => counter += num;
       const memoizeUpdateCounter = _.memoize(updateCounter);
@@ -657,5 +657,14 @@ describe('reduce', () => {
       memoizeUpdateCounter(1);
       memoizeUpdateCounter(1);
       expect(counter).to.equal(1);
+    });
+    it('calls the function multiple times if passed different arguments', () => {
+      let counter = 0;
+      const updateCounter = (num) => counter += num;
+      const memoizeUpdateCounter = _.memoize(updateCounter);
+      memoizeUpdateCounter(1);
+      memoizeUpdateCounter(2);
+      memoizeUpdateCounter(3);
+      expect(counter).to.equal(6);
     });
   });
