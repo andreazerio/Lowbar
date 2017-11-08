@@ -642,11 +642,20 @@ describe('reduce', () => {
     it('exists', () => {
       expect(_.memoize).to.be.a('function');
     });
-    it('returns the same value as the original function', function () {
+    it('returns the same value as the original function', () => {
       const double = (num) => num * 2;
       const memoizeDouble = _.memoize(double);
       expect(memoizeDouble(3)).to.eql(double(3));
       expect(memoizeDouble(3)).to.eql(double(3));
       expect(memoizeDouble(3)).to.eql(double(3));
+    });
+    it('calls only the function once if passed with the same argument ', () => {
+      let counter = 0;
+      const updateCounter = (num) => counter += num;
+      const memoizeUpdateCounter = _.memoize(updateCounter);
+      memoizeUpdateCounter(1);
+      memoizeUpdateCounter(1);
+      memoizeUpdateCounter(1);
+      expect(counter).to.equal(1);
     });
   });
