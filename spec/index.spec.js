@@ -629,4 +629,7 @@ describe('reduce', () => {
     it('returns the values from array that are not present in the other arrays', () => {
       expect(_.difference([1, 2, 3, 4, 5], [2, 5, 10])).to.eql([1, 3, 4]);
     });
+    it('returns a split string when passed a string as first argument', () => {
+      expect(_.difference('leonardo', 'raphael', 'donatello', 'michelangelo')).to.eql(['l', 'e', 'o', 'n', 'a', 'r', 'd', 'o']);
+    });
   });
