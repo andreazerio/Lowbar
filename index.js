@@ -273,4 +273,9 @@ _.filter = (list,pred, context) => {
     return _.uniq(result);
    };
 
+   _.difference = function () {
+    let args = [].slice.call(arguments);
+    return args;
+   };
+
 module.exports = _;

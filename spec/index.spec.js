@@ -621,3 +621,9 @@ describe('reduce', () => {
       expect(_.intersection({ a: 785, b: 'zebra' }, { a: 23, b: 'zebra', c: 99 }, { a: false, b: 'zebra' })).to.eql([]);
     });
   });
+
+  describe('difference', () => {
+    it('exists', () => {
+      expect(_.difference).to.be.a('function');
+    });
+  });
