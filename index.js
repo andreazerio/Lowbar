@@ -289,8 +289,7 @@ _.filter = (list,pred, context) => {
     };
 };
 
-_.delay = (func, time) => {
-    const args = [].slice.call(arguments, 2);
+_.delay = (func, time,  ...args) => {
     setTimeout(() => {
         func.apply(null, args);
     }, time);

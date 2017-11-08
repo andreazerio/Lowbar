@@ -682,4 +682,12 @@ describe('reduce', () => {
               done();
             }, 1005);
           });
+          it('passes the optional arguments to the function if provided', (done) => {
+            const spy = sinon.spy();
+            _.delay(spy, 1000, 'hello', 'world');
+            setTimeout(() => {
+                expect(spy.calledWith('hello', 'world')).to.equal(true);
+                done();
+            }, 1005);
+          });
   });
