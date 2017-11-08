@@ -259,4 +259,9 @@ _.filter = (list,pred, context) => {
     return array;
    };
 
+   _.intersection = function () {
+       let args = [].slice.call(arguments);
+       return args;
+   };
+
 module.exports = _;

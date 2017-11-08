@@ -603,3 +603,9 @@ describe('reduce', () => {
       expect(_.flatten({ a: 'yes', b: 'no', c: 'maybe' })).to.eql([]);
     });
   });
+
+  describe('intersection', () => {
+    it('exists', () => {
+      expect(_.intersection).to.be.a('function');
+    });
+  });
