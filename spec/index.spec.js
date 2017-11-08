@@ -608,11 +608,11 @@ describe('reduce', () => {
     it('exists', () => {
       expect(_.intersection).to.be.a('function');
     });
-    it('Computes the list of values that are the intersection of all the arrays given', function () {
+    it('Computes the list of values that are the intersection of all the arrays given', () => {
       expect(_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1])).to.eql([1, 2]);
       expect(_.intersection(['cat', 2, 3, false], [false, 2, 'cat', 10, true, 99], [2, 'cat', 'dog', false, 'mouse'])).to.eql(['cat', 2, false]);
     });
-    it('should return all characters common to each string given', function () {
+    it('should return all characters common to each string given', () => {
       expect(_.intersection('triceratops', 'tyrannosaurus rex')).to.eql(['t', 'r', 'e', 'a', 'o', 's']);
     });
     it('tests for edge cases', () => {
@@ -625,5 +625,8 @@ describe('reduce', () => {
   describe('difference', () => {
     it('exists', () => {
       expect(_.difference).to.be.a('function');
+    });
+    it('returns the values from array that are not present in the other arrays', () => {
+      expect(_.difference([1, 2, 3, 4, 5], [2, 5, 10])).to.eql([1, 3, 4]);
     });
   });

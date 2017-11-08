@@ -273,9 +273,12 @@ _.filter = (list,pred, context) => {
     return _.uniq(result);
    };
 
-   _.difference = function () {
-    let args = [].slice.call(arguments);
-    return args;
+   _.difference = function (array) {
+    const args = _.flatten([].slice.call(arguments, 1));
+    if (typeof array === 'string') return array.split('');
+    return _.filter(array,(elem) => {
+        return args.indexOf(elem) === -1;
+    });
    };
 
 module.exports = _;
