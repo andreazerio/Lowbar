@@ -295,4 +295,8 @@ _.delay = (func, time,  ...args) => {
     }, time);
 };
 
+_.where = () => {
+
+};
+
 module.exports = _;

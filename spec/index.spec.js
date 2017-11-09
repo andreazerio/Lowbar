@@ -691,3 +691,9 @@ describe('reduce', () => {
             }, 1005);
           });
   });
+
+  describe('where', () => {
+    it('exists', () => {
+      expect(_.where).to.be.a('function');
+    });
+  });
