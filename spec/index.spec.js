@@ -673,22 +673,22 @@ describe('reduce', () => {
       it('exists', () => {      
           expect(_.delay).to.be.a('function');
         });
-          it('executes the function after the set delay', (done) => {
+          it('executes the function after the set delay', () => {
             const spy = sinon.spy();
             _.delay(spy, 1000);
             expect(spy.called).to.equal(false);
             setTimeout(() => {
               expect(spy.called).to.equal(true);
-              done();
-            }, 1005);
+              
+            }, 1001);
           });
-          it('passes the optional arguments to the function if provided', (done) => {
+          it('passes the optional arguments to the function if provided', () => {
             const spy = sinon.spy();
             _.delay(spy, 1000, 'hello', 'world');
             setTimeout(() => {
                 expect(spy.calledWith('hello', 'world')).to.equal(true);
-                done();
-            }, 1005);
+        
+            }, 1001);
           });
   });
 
@@ -724,10 +724,23 @@ describe('reduce', () => {
     });
     it('calls the function passed to throttle with the right arguments', () => {
       const spy = sinon.spy();
-      const func = _.throttle(spy, 500);
+      const func = _.throttle(spy, 50);
       expect(spy.callCount).to.equal(0);
       func('hello');
       expect(spy.callCount).to.equal(1);
       expect(spy.args).to.eql([['hello']]);
+    });
+    it('only calls the function once in the wait period', () => {
+      const spy = sinon.spy();
+      const clock = sinon.useFakeTimers();
+      const throttleSpy = _.throttle(spy, 100);
+      throttleSpy('hello');
+      expect(spy.callCount).to.equal(1);
+      clock.tick(50);
+      throttleSpy('hello');
+      expect(spy.callCount).to.equal(1);
+      clock.tick(50);
+      throttleSpy('hello');
+      expect(spy.callCount).to.equal(2);
     });
   });

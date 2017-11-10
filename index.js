@@ -308,12 +308,14 @@ _.where = (list, properties) => {
 _.throttle = (func, wait) => {
   let timeFlag = false;
   let result;
-  const fn = () => timeFlag = false;
+  const fn = () => {
+    timeFlag = false;
+  };
   return function () {
     if (!timeFlag) {
       timeFlag = true;
       result = func.apply(this, arguments);
-      _.delay(fn, wait);
+      _.delay(fn, wait, arguments);
     }
     return result;
   };
