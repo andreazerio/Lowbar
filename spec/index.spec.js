@@ -707,4 +707,9 @@ describe('reduce', () => {
     it('Looks through each value in the list, returning an array of all the values that contain all of the key-value pairs listed in properties', () => {
      expect(_.where(list, properties)).to.eql([{title: 'Cymbeline', author: 'Shakespeare', year: 1611}, {title: 'The Tempest', author: 'Shakespeare', year: 1611}]);
     });
+    it('tests for edge cases', () => {
+      expect(_.where()).to.eql([]);
+      expect(_.where(1)).to.eql([]);
+      expect(_.where(true)).to.eql([]);
+    });
   });
