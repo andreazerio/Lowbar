@@ -305,4 +305,8 @@ _.where = (list, properties) => {
     });
 };
 
+_.throttle = (func, wait) => {
+  return (func, wait);
+};
+
 module.exports = _;

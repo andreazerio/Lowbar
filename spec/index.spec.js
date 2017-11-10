@@ -563,14 +563,14 @@ describe('reduce', () => {
   });
 
   describe('sortedIndex', () => {
-    it('should be a function', function () {
+    it('exists', () => {
       expect(_.sortedIndex).to.be.a('function');
     });
-    it('returns the index at which the element has been inserted', function () {
-      expect(_.sortedIndex([10, 20, 30, 40, 50], 35)).to.equal(3);
+    it('returns the index at which the value should be inserted into the list in order to maintain the list order', () => {
+      expect(_.sortedIndex([1, 22, 38, 45, 77, 90, 102], 42)).to.equal(4);
     });
-    it('returns the index at which the element has been inserted when given a passed a third element to sort the list', function () {
-      expect(_.sortedIndex(['up', 'ace', 'elephant', 'ivy'], 'boxes', 'length')).to.equal(3);
+    it('returns the index at which the element has been inserted when given a passed a third element to sort the list', () => {
+      expect(_.sortedIndex(['table', 'glass', 'laptop', 'photo'], 'honomatopea', 'length')).to.equal(4);
     });
     it('binds the predicate to the context if given one', () => {
       const context = {number: 5};
@@ -715,5 +715,11 @@ describe('reduce', () => {
       expect(_.where()).to.eql([]);
       expect(_.where(1)).to.eql([]);
       expect(_.where(true)).to.eql([]);
+    });
+  });
+
+  describe('throttle', () => {
+    it('exists', () => {
+      expect(_.throttle).to.be.a('function');
     });
   });
