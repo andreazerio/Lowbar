@@ -251,7 +251,7 @@ _.filter = (list,pred, context) => {
    _.flatten = (array, shallow) => {
     if (!Array.isArray(array) && typeof array !== 'string') return [];
     if (!shallow) {
-        _.each(array, function(el) {
+        _.each(array, (el) => {
             if (Array.isArray(el)) array = _.flatten([].concat.apply([], array));
         });
     }

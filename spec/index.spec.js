@@ -591,8 +591,8 @@ describe('reduce', () => {
       expect(_.flatten).to.be.a('function');
     });
     it('flattens a nested array (the nesting can be to any depth)', () => {
-      expect(_.flatten([1, [2], [3, [[4]]]])).to.eql([1, 2, 3, 4]);
-      expect(_.flatten(['flatten', [[['this',]], 'nested',], 'array'])).to.eql(['flatten', 'this', 'nested', 'array']);
+      expect(_.flatten([1, [2, [3, [4, [5, [6, [7]]]]], [8]]])).to.eql([1, 2, 3, 4, 5, 6, 7, 8]);
+      expect(_.flatten(['hello',[['world'], ['foo'], ['bar']]])).to.eql(['hello', 'world', 'foo', 'bar']);
     });
     it('only flattens the array to a single level if the "shallow" argument is passed', () => {
       expect(_.flatten([1, [2], [3, [[4]]]], true)).to.eql([1, 2, 3, [[4]]]);
@@ -706,6 +706,10 @@ describe('reduce', () => {
     });
     it('Looks through each value in the list, returning an array of all the values that contain all of the key-value pairs listed in properties', () => {
      expect(_.where(list, properties)).to.eql([{title: 'Cymbeline', author: 'Shakespeare', year: 1611}, {title: 'The Tempest', author: 'Shakespeare', year: 1611}]);
+    });
+    it('returns an array of letter when passed a string', () => {
+      expect(_.where('hello')).to.eql(['h', 'e', 'l', 'l', 'o']);
+      expect(_.where('hello world')).to.eql(['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']);
     });
     it('tests for edge cases', () => {
       expect(_.where()).to.eql([]);
