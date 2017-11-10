@@ -609,16 +609,16 @@ describe('reduce', () => {
       expect(_.intersection).to.be.a('function');
     });
     it('Computes the list of values that are the intersection of all the arrays given', () => {
-      expect(_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1])).to.eql([1, 2]);
-      expect(_.intersection(['cat', 2, 3, false], [false, 2, 'cat', 10, true, 99], [2, 'cat', 'dog', false, 'mouse'])).to.eql(['cat', 2, false]);
+      expect(_.intersection([12,789,73],[12, 98, 73, 273], [96, 73, 88, 12])).to.eql([12, 73]);
+      expect(_.intersection([ 17, 3, 'math', false, 'blue'], [false, 'math', 10, true, 99, 17], [ 'math', false, 17])).to.eql([17, 'math', false]);
     });
     it('should return all characters common to each string given', () => {
-      expect(_.intersection('triceratops', 'tyrannosaurus rex')).to.eql(['t', 'r', 'e', 'a', 'o', 's']);
+      expect(_.intersection('paperbag','trowsers')).to.eql(['e', 'r']);
     });
     it('tests for edge cases', () => {
-      expect(_.intersection(384, 789, 18)).to.eql([]);
+      expect(_.intersection({ a: 'hello' }, { a: 'world' })).to.eql([]);
+      expect(_.intersection(1, 2, 3)).to.eql([]);
       expect(_.intersection(true, true, true)).to.eql([]);
-      expect(_.intersection({ a: 785, b: 'zebra' }, { a: 23, b: 'zebra', c: 99 }, { a: false, b: 'zebra' })).to.eql([]);
     });
   });
 
@@ -627,13 +627,13 @@ describe('reduce', () => {
       expect(_.difference).to.be.a('function');
     });
     it('returns the values from array that are not present in the other arrays', () => {
-      expect(_.difference([1, 2, 3, 4, 5], [2, 5, 10])).to.eql([1, 3, 4]);
+      expect(_.difference([1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 6, 7])).to.eql([2, 3, 4, 5, 8, 9]);
     });
     it('returns a split string when passed a string as first argument', () => {
-      expect(_.difference('leonardo', 'raphael', 'donatello', 'michelangelo')).to.eql(['l', 'e', 'o', 'n', 'a', 'r', 'd', 'o']);
+      expect(_.difference('hello', 'world')).to.eql(['h', 'e', 'l', 'l', 'o']);
     });
     it('tests for edge cases', () => {
-      expect(_.difference(789, 17, 3)).to.eql([]);
+      expect(_.difference(1, 2, 3)).to.eql([]);
       expect(_.difference(true, false, false)).to.eql([]);
     });
   });
@@ -693,7 +693,18 @@ describe('reduce', () => {
   });
 
   describe('where', () => {
+    const list = [
+    {title: 'Cymbeline', author: 'Shakespeare', year: 1611},
+    {title: 'The Tempest', author: 'Shakespeare', year: 1611},
+    {title: 'Hamlet',  author: 'Shakespeare', year: 1603},
+    {title: 'MacBeth',  author: 'Shakespeare', year: 1623}
+  ];
+
+  const properties = {year: 1611};
     it('exists', () => {
       expect(_.where).to.be.a('function');
+    });
+    it('Looks through each value in the list, returning an array of all the values that contain all of the key-value pairs listed in properties', () => {
+     expect(_.where(list, properties)).to.eql([{title: 'Cymbeline', author: 'Shakespeare', year: 1611}, {title: 'The Tempest', author: 'Shakespeare', year: 1611}]);
     });
   });

@@ -282,9 +282,9 @@ _.filter = (list,pred, context) => {
    };
 
    _.memoize = (func) => {
-    var cache = {};
+    const cache = {};
     return function() {
-        var args = [].slice.call(arguments);
+        const args = [].slice.call(arguments);
         return cache[args] = (args in cache) ? cache[args] : func.apply(this, args);
     };
 };
@@ -295,8 +295,14 @@ _.delay = (func, time,  ...args) => {
     }, time);
 };
 
-_.where = () => {
-
+_.where = (list, properties) => {
+    return _.filter(list, obj => {
+        let isProperty = true;
+        for (let key in properties) {
+          if (obj[key] !== properties[key]) isProperty = false;
+        }
+        return isProperty;
+    });
 };
 
 module.exports = _;
