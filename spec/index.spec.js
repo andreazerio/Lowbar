@@ -554,7 +554,7 @@ describe('reduce', () => {
       expect(_.zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false])).to.eql([['moe', 30, true], ['larry', 40, false], ['curly', 50, false]]);
     });
     it('merges together letters of strings at the same index', () => {
-      expect(_.zip('green', 'white', 'black')).to.eql([['g', 'w', 'b'], ['r', 'h', 'l'], ['e', 'i', 'a'], ['e', 't', 'c'], ['n', 'e', 'k']]);
+      expect(_.zip('hello', 'world', 'fooba')).to.eql([['h', 'w', 'f'], ['e', 'o', 'o'], ['l', 'r', 'o'], ['l', 'l', 'b'], ['o', 'd', 'a']]);
     });
     it('tests for edge cases', () => {
       expect(_.zip(true)).to.eql([]);
@@ -721,5 +721,13 @@ describe('reduce', () => {
   describe('throttle', () => {
     it('exists', () => {
       expect(_.throttle).to.be.a('function');
+    });
+    it('calls the function passed to throttle with the right arguments', () => {
+      const spy = sinon.spy();
+      const func = _.throttle(spy, 500);
+      expect(spy.callCount).to.equal(0);
+      func('hello');
+      expect(spy.callCount).to.equal(1);
+      expect(spy.args).to.eql([['hello']]);
     });
   });

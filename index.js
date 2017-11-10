@@ -306,7 +306,17 @@ _.where = (list, properties) => {
 };
 
 _.throttle = (func, wait) => {
-  return (func, wait);
+  let timeFlag = false;
+  let result;
+  const fn = () => timeFlag = false;
+  return function () {
+    if (!timeFlag) {
+      timeFlag = true;
+      result = func.apply(this, arguments);
+      _.delay(fn, wait);
+    }
+    return result;
+  };
 };
 
 module.exports = _;
