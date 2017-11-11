@@ -770,4 +770,13 @@ describe('reduce', () => {
       const subFrom20 = _.partial(subtract, _, 20);
       expect(subFrom20(5)).to.equal(15);
     });
+    it('does not modify the this value of original function', () => {
+      const context = {number: 20};
+      let subtract = function (a) {
+        return this.number - a;
+      }; 
+      subtract = subtract.bind(context);  
+      const subPar = _.partial(subtract);
+      expect(subPar(5)).to.equal(15);
+    });
   });

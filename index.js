@@ -328,6 +328,7 @@ _.partial = function (func, ...args) {
       return arg === _ ? newArgs.shift() : arg;
     };
     const parArgs = _.map(args, fn);
+    
     return func(...parArgs, ...newArgs);
   };
   return newFunc;
