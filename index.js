@@ -321,7 +321,10 @@ _.throttle = (func, wait) => {
   };
 };
 
-_.partial = () => {
-
+_.partial = function (func, ...args) {
+  const newFunc = (...newArgs) => {
+    return func(...args, ...newArgs);
+  };
+  return newFunc;
 };
 module.exports = _;

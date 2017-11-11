@@ -749,4 +749,9 @@ describe('reduce', () => {
     it('exists', () => {
       expect(_.partial).to.be.a('function');
     });
+    it('Partially apply a function by filling in any number of its arguments, without changing its dynamic this value', () => {
+      const subtract = function(a, b) { return b - a; };
+      const sub5 = _.partial(subtract, 5);
+      expect(sub5(20)).to.equal(15);
+    });
   });
