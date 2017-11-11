@@ -744,3 +744,9 @@ describe('reduce', () => {
       expect(spy.callCount).to.equal(2);
     });
   });
+
+  describe('partial', () => {
+    it('exists', () => {
+      expect(_.partial).to.be.a('function');
+    });
+  });

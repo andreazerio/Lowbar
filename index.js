@@ -321,4 +321,7 @@ _.throttle = (func, wait) => {
   };
 };
 
+_.partial = () => {
+
+};
 module.exports = _;
