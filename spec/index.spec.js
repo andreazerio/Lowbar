@@ -759,4 +759,15 @@ describe('reduce', () => {
       const par = _.partial(func);
       expect(par('hello')).to.equal('hello');
     });
+    it('passes the argument given to it to the inner function when called', () => {
+      const spy = sinon.spy();
+      const func = _.partial(spy, 'hello');
+      func();
+      expect(spy.calledWith('hello')).to.be.true;
+    });
+    it('treats the _ argument as a placeholder and ignores it', () => {
+      const subtract = (a, b) => b - a;
+      const subFrom20 = _.partial(subtract, _, 20);
+      expect(subFrom20(5)).to.equal(15);
+    });
   });
